@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from './auth.service';
 import { LocalStorageService } from 'ngx-webstorage';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-auth',
@@ -15,7 +16,8 @@ export class AuthComponent implements OnInit{
    */
   constructor(private fb : FormBuilder,
     private authService : AuthService,
-    private storage:LocalStorageService
+    private storage:LocalStorageService,
+    private router : Router
   ) {
     
   }
@@ -27,10 +29,9 @@ export class AuthComponent implements OnInit{
   }
 
   login(){
-    console.log(JSON.stringify(this.authForm.value));
     this.authService.login(this.authForm.value).subscribe(x=>{
-     this.storage.store('token', x.results.accessToken);
-      console.log(x);
+      this.storage.store('token', x.results.accessToken);
+      this.router.navigateByUrl('/');
     });
   }
 
