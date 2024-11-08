@@ -6,6 +6,11 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 const routes: Routes = [
   {
     path : '',
+    loadChildren : () => import("./my-team/my-team.module").then(m=> m.MyTeamModule),
+    canActivate : [authGuard]
+  },
+  {
+    path : 'marketplace',
     loadChildren : () => import("./marketplace/marketplace.module").then(m => m.MarketplaceModule),
     canActivate : [authGuard]
   },
@@ -13,6 +18,7 @@ const routes: Routes = [
     path : 'login',
     loadChildren : () => import("./auth/auth.module").then(m=> m.AuthModule)
   },
+  
   { path: '**', component: PageNotFoundComponent }
 ];
 

@@ -1,0 +1,6 @@
+<ng-container *ngIf="myTeam$ | async as myTeam">
+    <p>Name {{myTeam.name}}</p>
+    <p>Country of origin {{myTeam.country}}</p>
+    <p>Team Value {{myTeam.value}}</p>
+    <p>Budget {{myTeam.budget}}</p>
+</ng-container>
